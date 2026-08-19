@@ -1,0 +1,11 @@
+{
+  "name": "interactive-networking-platform",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev:frontend": "npm --prefix frontend run dev",
+    "build:frontend": "npm --prefix frontend run build",
+    "dev:backend": "mvn -f backend/pom.xml spring-boot:run",
+    "build:backend": "mvn -f backend/pom.xml clean package"
+  }
+}

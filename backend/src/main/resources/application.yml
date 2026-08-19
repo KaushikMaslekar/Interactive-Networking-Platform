@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: interactive-networking-platform
+  datasource:
+    url: jdbc:postgresql://localhost:5432/interactive_networking
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
