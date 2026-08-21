@@ -1,23 +1,46 @@
+# ===================================================================
+# Base Spring Boot Configuration
+# ===================================================================
 spring:
   application:
     name: interactive-networking-platform
-  datasource:
-    url: jdbc:postgresql://localhost:5432/interactive_networking
-    username: postgres
-    password: postgres
-  jpa:
-    hibernate:
-      ddl-auto: validate
-    open-in-view: false
+  profiles:
+    active: dev
   jackson:
     serialization:
       write-dates-as-timestamps: false
+    default-property-inclusion: non_null
 
 server:
   port: 8080
+  shutdown: graceful
 
 management:
   endpoints:
     web:
       exposure:
         include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: when_authorized
+      probes:
+        enabled: true
+
+# OpenAPI documentation paths
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui/index.html
+    operations-sorter: method
+    tags-sorter: alpha
+
+# Application-specific properties
+app:
+  cors:
+    allowed-origins: http://localhost:3000,http://127.0.0.1:3000
+  security:
+    jwt:
+      secret: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+      expiration-ms: 86400000 # 24 hours
+      refresh-expiration-ms: 604800000 # 7 days
